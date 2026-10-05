@@ -1,0 +1,1 @@
+- [HostelFlow product scope](hostelflow-product.md) — college movement/security, not ERP; QR identifies a movement but does not verify identity or grant exit.

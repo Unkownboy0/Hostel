@@ -1,0 +1,2216 @@
+# BUILD A COMPLETE HIGH-FIDELITY PROTOTYPE
+
+## Hostel Movement, Leave, QR & Biometric Security Platform
+
+Design and generate a **complete, production-quality interactive UI prototype** for a modern college **Hostel Movement & Security Management Platform**.
+
+This is NOT a traditional college ERP.
+
+It is a modern, mobile-first, real-time hostel movement platform that combines:
+
+* Student movement requests
+* Short outings
+* Local permissions
+* Outstation/home-town leave
+* Emergency movement
+* Approval workflows
+* Dynamic QR verification
+* Security gate verification
+* Biometric fingerprint verification
+* Parent notifications
+* Mentor notifications
+* HOD notifications
+* Warden notifications
+* Security verification
+* Live movement tracking
+* Overdue return alerts
+* Reports
+* Audit logs
+* Hostel and gate management
+
+The prototype must look like a **premium modern SaaS/security product**, not an old college management system.
+
+---
+
+# 1. DESIGN DIRECTION
+
+Create a polished, modern interface inspired by:
+
+* Apple-quality simplicity
+* Modern SaaS dashboards
+* Security operations dashboards
+* Modern fintech-level information hierarchy
+* Clean mobile applications
+* Real-time monitoring systems
+
+Visual characteristics:
+
+* Minimal
+* Professional
+* Clean
+* Premium
+* Spacious
+* Highly readable
+* Strong hierarchy
+* Subtle animations
+* Rounded cards
+* Soft shadows
+* Clear status indicators
+* Modern typography
+* Excellent responsive behavior
+
+Avoid:
+
+* Old ERP appearance
+* Excessive tables everywhere
+* Tiny text
+* Overloaded dashboards
+* Too many colors
+* Cheap gradients
+* Generic Bootstrap-looking UI
+* Excessive glassmorphism
+* Cartoon-like icons
+* Fake AI gimmicks
+
+---
+
+# 2. BRAND / PRODUCT NAME
+
+Use:
+
+**HostelFlow**
+
+Subtitle:
+
+**Smart Hostel Movement & Security**
+
+You may use a simple abstract shield + movement/scan symbol as the temporary product logo.
+
+The prototype should feel suitable for a real engineering college.
+
+---
+
+# 3. COLOR SYSTEM
+
+Primary:
+
+```text
+#0F172A
+```
+
+Secondary:
+
+```text
+#2563EB
+```
+
+Success:
+
+```text
+#16A34A
+```
+
+Warning:
+
+```text
+#F59E0B
+```
+
+Danger:
+
+```text
+#DC2626
+```
+
+Background:
+
+```text
+#F8FAFC
+```
+
+Dark mode background:
+
+```text
+#0B1120
+```
+
+Use colors mainly for status and actions.
+
+Do not make the entire interface highly colorful.
+
+---
+
+# 4. RESPONSIVE DESIGN
+
+Create both:
+
+### Desktop Web
+
+For:
+
+* Admin
+* Principal
+* Dean
+* Warden
+* Deputy Warden
+* HOD
+* Mentor
+* Security
+
+### Mobile
+
+For:
+
+* Student
+* Parent
+* Security
+
+The prototype must demonstrate responsive behavior.
+
+---
+
+# 5. GLOBAL NAVIGATION
+
+Desktop sidebar:
+
+```text
+Dashboard
+
+Live Movements
+
+Movement Requests
+
+Approvals
+
+Students
+
+Hostels
+
+Gates
+
+Devices
+
+Notifications
+
+Reports
+
+Audit Logs
+
+Settings
+```
+
+Bottom/secondary navigation for mobile:
+
+```text
+Home
+Movement
+QR
+Notifications
+Profile
+```
+
+Security mobile navigation:
+
+```text
+Home
+Scan
+Activity
+Profile
+```
+
+---
+
+# 6. LOGIN SCREEN
+
+Create a premium login screen.
+
+Content:
+
+```text
+HostelFlow
+
+Smart Hostel Movement & Security
+
+Email / Student ID
+Password
+
+Sign In
+
+Forgot Password?
+
+Need help?
+```
+
+Below:
+
+```text
+Secure institutional access
+```
+
+Show subtle security iconography.
+
+Provide role-aware demo login options:
+
+```text
+Student Demo
+Parent Demo
+Security Demo
+Warden Demo
+HOD Demo
+Admin Demo
+```
+
+These are only for prototype navigation.
+
+---
+
+# 7. STUDENT APP
+
+Create a complete student mobile application.
+
+## Student Home
+
+Header:
+
+```text
+Good Evening, Arun
+
+CSE • III Year
+Hostel A • Room 204
+```
+
+Large current status card:
+
+```text
+HOSTEL STATUS
+
+● INSIDE
+
+Hostel A
+Room 204
+```
+
+Main action:
+
+```text
+Request Movement
+```
+
+Quick actions:
+
+```text
+Short Outing
+Local Permission
+Leave
+Emergency
+```
+
+Active movement section:
+
+```text
+No Active Movement
+```
+
+or if active:
+
+```text
+ACTIVE MOVEMENT
+
+Town
+Short Outing
+
+Exit:
+5:40 PM
+
+Expected Return:
+8:00 PM
+
+View QR
+```
+
+Bottom:
+
+```text
+Home
+Movement
+QR
+Notifications
+Profile
+```
+
+---
+
+# 8. CREATE MOVEMENT SCREEN
+
+Create a beautiful step-based form.
+
+Title:
+
+```text
+Request Movement
+```
+
+Step indicator:
+
+```text
+1 Type
+2 Details
+3 Review
+```
+
+Movement type cards:
+
+### Short Outing
+
+Icon: walking/person
+
+```text
+Food, ATM, shopping, nearby work
+```
+
+### Local Permission
+
+```text
+Town, hospital, market, personal work
+```
+
+### Outstation Leave
+
+```text
+Home town, family function, vacation
+```
+
+### Emergency
+
+```text
+Urgent medical/family situation
+```
+
+---
+
+# 9. MOVEMENT DETAILS
+
+Fields:
+
+```text
+Purpose
+
+Destination
+
+Reason
+
+Exit Date
+
+Expected Exit Time
+
+Expected Return Date
+
+Expected Return Time
+```
+
+Conditional fields should appear based on movement type.
+
+For example:
+
+Short Outing:
+
+```text
+Destination
+Purpose
+Expected Return
+```
+
+Outstation:
+
+```text
+Destination
+Reason
+From Date
+To Date
+Travel Details
+```
+
+---
+
+# 10. REVIEW SCREEN
+
+Show a clean summary:
+
+```text
+Movement Request
+
+Type
+Short Outing
+
+Purpose
+Food
+
+Destination
+Town
+
+Exit
+Today • 5:30 PM
+
+Expected Return
+Today • 8:00 PM
+```
+
+Approval information:
+
+```text
+Approval Required
+
+Auto Approval
+```
+
+or:
+
+```text
+Approval Flow
+
+Mentor
+↓
+HOD
+↓
+Warden
+```
+
+Primary button:
+
+```text
+Submit Request
+```
+
+---
+
+# 11. REQUEST SUBMITTED SCREEN
+
+Success state:
+
+```text
+Request Submitted
+
+Your movement request has been submitted successfully.
+
+Request ID
+MV-2026-004821
+```
+
+Timeline:
+
+```text
+✓ Request Submitted
+○ Approval Pending
+○ QR Activation
+○ Gate Verification
+○ Exit
+○ Return
+```
+
+Button:
+
+```text
+View Request
+```
+
+---
+
+# 12. APPROVAL STATUS SCREEN
+
+Create a timeline.
+
+Example:
+
+```text
+Movement Request
+
+OUTSTATION LEAVE
+
+Home Town
+Oct 5 – Oct 8
+
+Approval Timeline
+
+✓ Student submitted
+✓ Mentor approved
+● HOD pending
+○ Warden pending
+```
+
+Each approver should show:
+
+```text
+Role
+Name
+Status
+Time
+Comment
+```
+
+---
+
+# 13. ACTIVE QR SCREEN
+
+This is one of the most important screens.
+
+Create a premium full-screen QR experience.
+
+Header:
+
+```text
+Exit Pass
+```
+
+Status:
+
+```text
+● APPROVED
+```
+
+Show:
+
+```text
+Arun Kumar
+CSE • III Year
+
+Short Outing
+Town
+```
+
+Large dynamic QR code in center.
+
+Below:
+
+```text
+QR refreshes automatically
+
+Expires in 00:42
+```
+
+Security instruction:
+
+```text
+Show this QR at the hostel gate.
+Biometric verification is required.
+```
+
+Bottom information:
+
+```text
+Expected Exit
+5:30 PM
+
+Expected Return
+8:00 PM
+```
+
+Important visual distinction:
+
+```text
+QR = Movement Identification
+Fingerprint = Identity Verification
+```
+
+Do NOT imply that QR itself contains fingerprint information.
+
+---
+
+# 14. QR STATES
+
+Create multiple prototype states.
+
+### Active
+
+```text
+QR ACTIVE
+```
+
+### Expired
+
+```text
+QR EXPIRED
+
+Generate New QR
+```
+
+### Revoked
+
+```text
+QR REVOKED
+
+This movement is no longer valid.
+```
+
+### Pending approval
+
+```text
+QR NOT AVAILABLE
+
+Waiting for approval.
+```
+
+### Completed
+
+```text
+MOVEMENT COMPLETED
+```
+
+---
+
+# 15. MOVEMENT HISTORY
+
+Create a clean timeline/list.
+
+Examples:
+
+```text
+Oct 5
+Short Outing
+Town
+5:30 PM → 7:52 PM
+Completed
+
+Oct 2
+Local Permission
+Hospital
+10:10 AM → 12:05 PM
+Completed
+
+Sep 28
+Outstation Leave
+Home Town
+Approved
+```
+
+Filters:
+
+```text
+All
+Outing
+Permission
+Leave
+Emergency
+```
+
+---
+
+# 16. STUDENT NOTIFICATIONS
+
+Create notification center.
+
+Sections:
+
+```text
+Today
+Earlier
+```
+
+Examples:
+
+```text
+Movement Approved
+Your short outing request was approved.
+
+Exit Confirmed
+Your exit was verified at Main Gate.
+
+Return Confirmed
+You have successfully returned to the hostel.
+
+Return Reminder
+Your expected return time is approaching.
+```
+
+Use appropriate status icons.
+
+---
+
+# 17. PARENT MOBILE APP
+
+Parent dashboard must only show their child's information.
+
+Header:
+
+```text
+Good Evening
+
+Parent Portal
+```
+
+Child card:
+
+```text
+Arun Kumar
+CSE • III Year
+Hostel A • Room 204
+```
+
+Current status:
+
+```text
+● OUTSIDE
+```
+
+Active movement:
+
+```text
+Short Outing
+Town
+
+Exited:
+5:42 PM
+
+Expected Return:
+8:00 PM
+```
+
+Do NOT show other students.
+
+---
+
+# 18. PARENT NOTIFICATION SCREEN
+
+Example:
+
+```text
+Movement Update
+
+Arun Kumar has exited the hostel.
+
+Destination:
+Town
+
+Exit Time:
+5:42 PM
+
+Expected Return:
+8:00 PM
+```
+
+Another:
+
+```text
+Return Confirmed
+
+Arun Kumar has safely returned to the hostel.
+
+Return Time:
+7:54 PM
+```
+
+Parent has no Approve/Reject button.
+
+---
+
+# 19. SECURITY MOBILE APP
+
+This should be extremely simple and operational.
+
+Home screen:
+
+```text
+Good Evening, Security
+
+Main Gate
+
+● Device Online
+● Biometric Online
+```
+
+Large primary action:
+
+```text
+SCAN QR
+```
+
+Below:
+
+```text
+Today's Activity
+42 exits
+37 returns
+2 denied
+```
+
+---
+
+# 20. SECURITY QR SCANNER
+
+Create full-screen QR scanner UI.
+
+Header:
+
+```text
+Scan Movement QR
+
+Main Gate
+```
+
+Scanner frame.
+
+Below:
+
+```text
+Align the student's QR inside the frame.
+```
+
+After scanning, show verification state.
+
+---
+
+# 21. QR VALIDATION RESULT
+
+If valid:
+
+```text
+MOVEMENT VERIFIED
+
+Arun Kumar
+
+CSE • III Year
+
+Short Outing
+Town
+
+Approved ✓
+
+Expected Return
+8:00 PM
+```
+
+Then prominent action:
+
+```text
+VERIFY BIOMETRIC
+```
+
+Do not show "Exit Approved" yet.
+
+---
+
+# 22. BIOMETRIC VERIFICATION SCREEN
+
+Create a realistic biometric verification interface.
+
+Header:
+
+```text
+Identity Verification
+```
+
+Show:
+
+```text
+QR VERIFIED ✓
+
+Student:
+Arun Kumar
+
+Now verify fingerprint
+```
+
+Visual:
+
+Fingerprint icon / biometric scanner animation.
+
+Status:
+
+```text
+Waiting for fingerprint...
+```
+
+Then successful state:
+
+```text
+BIOMETRIC MATCH ✓
+
+Identity verified successfully.
+```
+
+Then:
+
+```text
+CONFIRM EXIT
+```
+
+The UI should clearly communicate:
+
+```text
+QR Verified
++
+Biometric Matched
+=
+Identity Confirmed
+```
+
+---
+
+# 23. EXIT CONFIRMED SCREEN
+
+Large success state:
+
+```text
+✓ EXIT CONFIRMED
+```
+
+Details:
+
+```text
+Arun Kumar
+Main Gate
+
+5:42 PM
+
+Short Outing
+Town
+```
+
+Status:
+
+```text
+Student is now OUTSIDE
+```
+
+Notification indicator:
+
+```text
+Parent notified
+Mentor updated
+Warden updated
+```
+
+Button:
+
+```text
+Done
+```
+
+---
+
+# 24. FAILED VERIFICATION
+
+Create several error states.
+
+### QR Expired
+
+```text
+QR EXPIRED
+
+This QR is no longer valid.
+
+Do not allow exit.
+```
+
+### Not Approved
+
+```text
+MOVEMENT NOT APPROVED
+
+Required approval is incomplete.
+
+EXIT DENIED
+```
+
+### Biometric Mismatch
+
+```text
+BIOMETRIC MISMATCH
+
+Identity could not be verified.
+
+EXIT DENIED
+```
+
+### Wrong Gate
+
+```text
+GATE NOT AUTHORIZED
+
+This movement cannot be processed at this gate.
+
+EXIT DENIED
+```
+
+### Already Outside
+
+```text
+INVALID MOVEMENT STATE
+
+Student is already marked outside.
+
+EXIT DENIED
+```
+
+Make the denied state visually strong but professional.
+
+---
+
+# 25. RETURN VERIFICATION
+
+Security must support both:
+
+```text
+EXIT
+RETURN
+```
+
+When scanning an active outside movement:
+
+```text
+RETURN VERIFICATION
+
+Arun Kumar
+
+Movement:
+Short Outing
+
+Expected Return:
+8:00 PM
+
+Current Time:
+7:54 PM
+```
+
+Then:
+
+```text
+VERIFY BIOMETRIC
+```
+
+After successful fingerprint:
+
+```text
+✓ RETURN CONFIRMED
+
+Student is now INSIDE.
+
+Return:
+7:54 PM
+```
+
+---
+
+# 26. SECURITY ACTIVITY
+
+Create:
+
+```text
+Today's Gate Activity
+```
+
+List:
+
+```text
+5:42 PM
+Arun Kumar
+EXIT
+Verified ✓
+
+5:31 PM
+Priya S
+EXIT
+Denied ✕
+
+5:15 PM
+Rahul K
+RETURN
+Verified ✓
+```
+
+Filters:
+
+```text
+All
+Exit
+Return
+Denied
+```
+
+---
+
+# 27. WARDEN DASHBOARD
+
+Desktop dashboard.
+
+Header:
+
+```text
+Good Evening, Warden
+
+Hostel Operations
+```
+
+Top statistics:
+
+```text
+Students Outside
+124
+
+Inside
+1,876
+
+Pending Approvals
+18
+
+Overdue
+7
+```
+
+---
+
+# 28. LIVE MOVEMENT MAP / BOARD
+
+Create a live operational board.
+
+Sections:
+
+```text
+INSIDE
+OUTSIDE
+RETURN DUE
+OVERDUE
+EMERGENCY
+```
+
+Cards:
+
+```text
+Arun Kumar
+CSE • III Year
+Hostel A
+
+Outside
+Expected 8:00 PM
+```
+
+Overdue card:
+
+```text
+Rahul K
+Mechanical • II Year
+
+OVERDUE
+
+Expected:
+7:30 PM
+
+Current:
+8:15 PM
+```
+
+---
+
+# 29. WARDEN APPROVAL SCREEN
+
+Create a professional approval queue.
+
+Filters:
+
+```text
+All
+Pending
+Urgent
+Outstation
+Emergency
+```
+
+Request card:
+
+```text
+Arun Kumar
+CSE • III Year
+
+Outstation Leave
+
+Destination:
+Chennai
+
+Oct 6 – Oct 8
+
+Reason:
+Family function
+
+Mentor:
+Approved ✓
+
+HOD:
+Approved ✓
+
+Warden:
+Pending
+```
+
+Buttons:
+
+```text
+Approve
+Reject
+View Details
+```
+
+---
+
+# 30. HOD DASHBOARD
+
+HOD should only see their department.
+
+Header:
+
+```text
+CSE Department
+
+Movement Overview
+```
+
+Stats:
+
+```text
+Students
+620
+
+Outside
+28
+
+Pending Approval
+7
+
+Overdue
+2
+```
+
+Department movement list.
+
+Use department-level summaries.
+
+---
+
+# 31. MENTOR DASHBOARD
+
+Show assigned mentees.
+
+```text
+My Mentees
+```
+
+Stats:
+
+```text
+42 Mentees
+3 Outside
+2 Pending
+1 Overdue
+```
+
+Requests:
+
+```text
+Arun Kumar
+Short Outing
+Pending
+
+Priya S
+Outstation Leave
+Pending
+```
+
+---
+
+# 32. ADMIN DASHBOARD
+
+Create a high-level institutional command center.
+
+Header:
+
+```text
+HostelFlow
+Institution Overview
+```
+
+Statistics:
+
+```text
+Total Students
+2,000
+
+Currently Outside
+124
+
+Pending Approvals
+18
+
+Overdue
+7
+
+Today's Movements
+342
+```
+
+Charts:
+
+```text
+Movement Trends
+Department Distribution
+Hostel Distribution
+Exit vs Return
+Late Return Trend
+```
+
+---
+
+# 33. LIVE OPERATIONS DASHBOARD
+
+Create a realtime monitoring screen.
+
+Title:
+
+```text
+Live Hostel Operations
+```
+
+Show:
+
+```text
+LIVE ●
+```
+
+Cards:
+
+```text
+124 Outside
+1,876 Inside
+7 Overdue
+3 Emergency
+```
+
+Activity feed:
+
+```text
+5:42 PM
+Arun Kumar exited Main Gate
+
+5:41 PM
+Priya S returned Hostel B
+
+5:39 PM
+Rahul K verification failed
+```
+
+Make it feel like a real-time security operations center.
+
+---
+
+# 34. HOSTEL MANAGEMENT
+
+Create screens for:
+
+```text
+Hostels
+Blocks
+Rooms
+Beds
+```
+
+Example:
+
+```text
+Hostel A
+
+Capacity
+500
+
+Occupied
+482
+
+Available
+18
+```
+
+Block cards:
+
+```text
+A Block
+200 beds
+194 occupied
+
+B Block
+300 beds
+288 occupied
+```
+
+---
+
+# 35. GATE MANAGEMENT
+
+Create:
+
+```text
+Gates
+```
+
+Example:
+
+```text
+Main Gate
+● Online
+
+Hostel A Gate
+● Online
+
+Hostel B Gate
+● Offline
+```
+
+Each gate:
+
+```text
+Gate Name
+Location
+Security Device
+Biometric Device
+Status
+Last Heartbeat
+```
+
+---
+
+# 36. DEVICE MANAGEMENT
+
+Create device dashboard.
+
+Sections:
+
+```text
+Biometric Devices
+Security Devices
+```
+
+Example:
+
+```text
+Main Gate Biometric
+
+● ONLINE
+
+Last heartbeat:
+12 seconds ago
+
+Device:
+BIO-001
+```
+
+Offline state:
+
+```text
+● OFFLINE
+
+Last seen:
+8 minutes ago
+```
+
+---
+
+# 37. REPORTS
+
+Create reports dashboard.
+
+Cards:
+
+```text
+Daily Movement
+Weekly Movement
+Monthly Movement
+Late Returns
+Gate Activity
+Department Statistics
+Hostel Statistics
+```
+
+Add charts.
+
+Filters:
+
+```text
+Date
+Department
+Hostel
+Movement Type
+Gate
+```
+
+Buttons:
+
+```text
+Export CSV
+Export Excel
+Export PDF
+```
+
+---
+
+# 38. AUDIT LOG
+
+Create professional audit log screen.
+
+Columns:
+
+```text
+Time
+Actor
+Role
+Action
+Student
+Gate
+Device
+Status
+```
+
+Examples:
+
+```text
+5:42 PM
+Security #12
+Security
+EXIT_CONFIRMED
+Arun Kumar
+Main Gate
+BIO-001
+Success
+
+5:41 PM
+Security #12
+Security
+BIOMETRIC_FAILED
+Rahul K
+Main Gate
+BIO-001
+Failed
+```
+
+Add filters.
+
+---
+
+# 39. NOTIFICATION CENTER FOR ADMIN
+
+Show:
+
+```text
+Notifications
+```
+
+Tabs:
+
+```text
+All
+Critical
+Movement
+Security
+System
+```
+
+Examples:
+
+```text
+7 students overdue
+
+Main Gate biometric offline
+
+Emergency movement created
+
+High number of failed verifications
+```
+
+---
+
+# 40. POLICY MANAGEMENT
+
+Create an admin screen:
+
+```text
+Movement Policies
+```
+
+Policy cards:
+
+```text
+Short Outing
+
+Approval:
+Auto
+
+Maximum Duration:
+4 hours
+
+QR Expiry:
+60 seconds
+```
+
+```text
+Local Permission
+
+Approval:
+Deputy Warden
+
+Maximum Duration:
+8 hours
+```
+
+```text
+Outstation Leave
+
+Approval:
+Mentor → HOD → Warden
+```
+
+```text
+Emergency
+
+Approval:
+Emergency Warden
+```
+
+---
+
+# 41. APPROVAL WORKFLOW BUILDER
+
+Create a visual workflow UI.
+
+Example:
+
+```text
+Outstation Leave
+
+Student
+   ↓
+Mentor
+   ↓
+HOD
+   ↓
+Warden
+   ↓
+APPROVED
+```
+
+Allow prototype interactions:
+
+```text
++ Add Step
+Edit
+Delete
+Reorder
+```
+
+---
+
+# 42. NOTIFICATION POLICY
+
+Create settings:
+
+```text
+EXIT_CONFIRMED
+```
+
+Recipients:
+
+```text
+Parent ✓
+Mentor ✓
+HOD ✓
+Warden ✓
+Security ✓
+Admin
+```
+
+Channels:
+
+```text
+Push ✓
+SMS ✓
+WhatsApp ✓
+Email ✓
+In-App ✓
+```
+
+Use toggles.
+
+---
+
+# 43. PROFILE / USER MANAGEMENT
+
+Create user management.
+
+Roles:
+
+```text
+Admin
+Dean
+Warden
+Deputy Warden
+HOD
+Mentor
+Security
+Student
+Parent
+```
+
+Student profile:
+
+```text
+Name
+Register Number
+Department
+Year
+Hostel
+Room
+Mentor
+Parent
+Status
+```
+
+---
+
+# 44. DARK MODE
+
+Provide a complete dark mode.
+
+Dark mode should look premium.
+
+Do not simply invert colors.
+
+Maintain:
+
+* Readability
+* Status contrast
+* Card hierarchy
+* Accessible buttons
+* QR visibility
+* Scanner visibility
+
+---
+
+# 45. COMPONENT SYSTEM
+
+Create reusable components:
+
+```text
+StatusBadge
+StudentCard
+MovementCard
+ApprovalTimeline
+QRCard
+VerificationCard
+StatCard
+NotificationItem
+ActivityItem
+DataTable
+FilterBar
+Modal
+BottomSheet
+EmptyState
+ErrorState
+LoadingState
+```
+
+Keep visual consistency across all screens.
+
+---
+
+# 46. IMPORTANT STATES TO PROTOTYPE
+
+Do not only design happy paths.
+
+Include:
+
+```text
+Loading
+Empty
+Success
+Error
+Pending
+Approved
+Rejected
+Expired
+Cancelled
+Overdue
+Emergency
+Offline
+Biometric Failed
+QR Failed
+Gate Offline
+Device Offline
+```
+
+---
+
+# 47. REALISTIC PROTOTYPE DATA
+
+Use realistic sample students.
+
+Example:
+
+```text
+Arun Kumar
+CSE
+III Year
+Hostel A
+Room 204
+```
+
+```text
+Priya S
+ECE
+II Year
+Hostel B
+Room 312
+```
+
+```text
+Rahul K
+Mechanical
+III Year
+Hostel A
+Room 108
+```
+
+Use multiple departments:
+
+```text
+CSE
+ECE
+EEE
+Mechanical
+Civil
+IT
+```
+
+Use multiple hostels:
+
+```text
+Hostel A
+Hostel B
+Hostel C
+```
+
+These are prototype-only records.
+
+---
+
+# 48. PROTOTYPE INTERACTIONS
+
+Make the prototype feel functional.
+
+Examples:
+
+### Student
+
+```text
+Request Movement
+→ Select Short Outing
+→ Fill Details
+→ Review
+→ Submit
+→ Approval Status
+→ QR Activated
+→ QR Screen
+```
+
+### Security
+
+```text
+Scan QR
+→ QR Valid
+→ Biometric Screen
+→ Match
+→ Exit Confirmed
+```
+
+### Failed flow
+
+```text
+Scan QR
+→ QR Expired
+→ Exit Denied
+```
+
+### Warden
+
+```text
+Pending Approval
+→ View Request
+→ Approve
+→ QR Activated
+```
+
+### Return
+
+```text
+Active Outside Movement
+→ Scan
+→ Biometric
+→ Return Confirmed
+→ Student Inside
+```
+
+---
+
+# 49. CRITICAL PRODUCT LOGIC TO VISUALLY COMMUNICATE
+
+The prototype must clearly communicate:
+
+```text
+REQUEST
+   ↓
+APPROVAL
+   ↓
+QR ACTIVATED
+   ↓
+QR SCAN
+   ↓
+BIOMETRIC
+   ↓
+VERIFIED
+   ↓
+EXIT CONFIRMED
+   ↓
+NOTIFICATIONS
+```
+
+For return:
+
+```text
+RETURN
+   ↓
+QR SCAN
+   ↓
+BIOMETRIC
+   ↓
+RETURN CONFIRMED
+   ↓
+INSIDE
+```
+
+Do NOT visually suggest that scanning QR alone grants exit.
+
+---
+
+# 50. FINAL PROTOTYPE REQUIREMENT
+
+Generate a complete interconnected prototype with:
+
+### Student
+
+```text
+Login
+Dashboard
+Request Movement
+Movement Details
+Review
+Approval Status
+QR
+History
+Notifications
+Profile
+```
+
+### Parent
+
+```text
+Login
+Dashboard
+Child Status
+Movement Details
+Notifications
+History
+Profile
+```
+
+### Security
+
+```text
+Login
+Gate Dashboard
+QR Scanner
+QR Validation
+Biometric Verification
+Exit Confirmed
+Return Verification
+Denied State
+Activity
+Profile
+```
+
+### Mentor
+
+```text
+Dashboard
+Mentee List
+Approval Queue
+Request Details
+Approval
+Notifications
+```
+
+### HOD
+
+```text
+Dashboard
+Department Movements
+Approval Queue
+Request Details
+Reports
+Notifications
+```
+
+### Warden
+
+```text
+Dashboard
+Live Operations
+Approvals
+Students Outside
+Overdue
+Hostels
+Gates
+Devices
+Reports
+Notifications
+```
+
+### Admin
+
+```text
+Dashboard
+Live Operations
+Users
+Students
+Hostels
+Gates
+Devices
+Movement Policies
+Approval Policies
+Notification Policies
+Reports
+Audit Logs
+Settings
+```
+
+---
+
+# 51. FINAL VISUAL QUALITY
+
+The result should look like a product that could realistically be presented to:
+
+* College Principal
+* Dean
+* Warden
+* IT Department
+* Security Team
+* Parents
+* Students
+* Investors
+
+It should feel like a **real startup SaaS product**, not a student project.
+
+Prioritize:
+
+**clarity > decoration**
+
+**workflow > visual effects**
+
+**security > convenience**
+
+**realistic states > static screens**
+
+**consistent components > one-off designs**
+
+---
+
+# 52. FINAL PROTOTYPE FLOW
+
+The most important demo journey should be:
+
+```text
+STUDENT
+
+Login
+ ↓
+Dashboard
+ ↓
+Request Short Outing
+ ↓
+Submit
+ ↓
+Approved
+ ↓
+Dynamic QR
+ ↓
+────────────────────────
+
+SECURITY
+
+Login
+ ↓
+Main Gate
+ ↓
+Scan QR
+ ↓
+QR Verified
+ ↓
+Biometric Verification
+ ↓
+Fingerprint Match
+ ↓
+EXIT CONFIRMED
+
+────────────────────────
+
+SYSTEM
+
+EXIT_CONFIRMED
+ ↓
+Student → OUTSIDE
+ ↓
+Parent Notification
+ ↓
+Mentor Update
+ ↓
+HOD Update
+ ↓
+Warden Update
+ ↓
+Admin Live Dashboard
+
+────────────────────────
+
+RETURN
+
+Student Returns
+ ↓
+Security Scan
+ ↓
+QR Verified
+ ↓
+Biometric Match
+ ↓
+RETURN CONFIRMED
+ ↓
+Student → INSIDE
+ ↓
+Parent Notification
+ ↓
+Movement → COMPLETED
+```
+
+Make this complete flow highly polished and easy to demonstrate.
+
+# FINAL INSTRUCTION
+
+Build the **entire high-fidelity interactive prototype**, not just a few sample screens.
+
+Ensure all screens are visually connected and navigable.
+
+Use realistic data, realistic states, realistic workflows, and realistic security verification steps.
+
+The final result should communicate a clear product vision:
+
+> **A secure, real-time, mobile-first hostel movement platform where approval, QR verification, biometric identity verification, gate verification, notifications, and institutional monitoring work together as one system.**
