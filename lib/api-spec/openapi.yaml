@@ -3,13 +3,23 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: HostelFlow movement approvals, gate operations, and administration
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: account
+    description: Signed-in user profile
+  - name: operations
+    description: Hostel movement operations
+  - name: approvals
+    description: Role-based request review
+  - name: gates
+    description: Simulated gate verification and device status
+  - name: administration
+    description: Users, policies, hostels, gates, and audit records
 paths:
   /healthz:
     get:
@@ -24,13 +34,703 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /auth/me:
+    get:
+      operationId: getCurrentUser
+      tags: [account]
+      summary: Get or provision the signed-in user's HostelFlow profile
+      responses:
+        "200":
+          description: Current user profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+    patch:
+      operationId: updateCurrentUser
+      tags: [account]
+      summary: Update editable profile fields
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MeUpdate"
+      responses:
+        "200":
+          description: Updated user profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+  /dashboard:
+    get:
+      operationId: getDashboard
+      tags: [operations]
+      summary: Get role-scoped dashboard metrics and recent activity
+      responses:
+        "200":
+          description: Dashboard data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+  /movements:
+    get:
+      operationId: listMovements
+      tags: [operations]
+      summary: List movements visible to the current role
+      parameters:
+        - name: status
+          in: query
+          schema:
+            $ref: "#/components/schemas/MovementStatus"
+        - name: type
+          in: query
+          schema:
+            $ref: "#/components/schemas/MovementType"
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 100
+      responses:
+        "200":
+          description: Visible movement records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Movement"
+    post:
+      operationId: createMovement
+      tags: [operations]
+      summary: Create a movement request for the signed-in student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MovementInput"
+      responses:
+        "201":
+          description: Created movement request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Movement"
+  /movements/{id}:
+    get:
+      operationId: getMovement
+      tags: [operations]
+      summary: Get a movement and its approval history
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Movement detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Movement"
+        "404":
+          description: Movement not found
+  /movements/{id}/decision:
+    post:
+      operationId: decideMovement
+      tags: [approvals]
+      summary: Approve or reject the current approval step
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DecisionInput"
+      responses:
+        "200":
+          description: Updated movement
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Movement"
+  /movements/{id}/qr:
+    post:
+      operationId: refreshMovementQr
+      tags: [operations]
+      summary: Issue a short-lived, single-use movement QR token
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: QR token for a simulated gate scan
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QrToken"
+  /movements/{id}/verify:
+    post:
+      operationId: verifyMovement
+      tags: [gates]
+      summary: Simulate separate QR, biometric, and gate-confirmation checks
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GateVerificationInput"
+      responses:
+        "200":
+          description: Verification result and updated movement
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GateVerificationResult"
+  /notifications:
+    get:
+      operationId: listNotifications
+      tags: [operations]
+      summary: List notifications for the signed-in user
+      responses:
+        "200":
+          description: User notifications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Notification"
+  /notifications/{id}/read:
+    patch:
+      operationId: markNotificationRead
+      tags: [operations]
+      summary: Mark a notification as read
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Updated notification
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notification"
+  /users:
+    get:
+      operationId: listUsers
+      tags: [administration]
+      summary: List user accounts for administration
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            $ref: "#/components/schemas/AccountStatus"
+      responses:
+        "200":
+          description: User profiles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserProfile"
+  /users/{id}:
+    patch:
+      operationId: updateUser
+      tags: [administration]
+      summary: Assign a role or update a user's account status
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserUpdate"
+      responses:
+        "200":
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+  /users/{id}/links:
+    post:
+      operationId: linkUser
+      tags: [administration]
+      summary: Link a parent or mentor to a student
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserLinkInput"
+      responses:
+        "201":
+          description: User relationship created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserLink"
+  /hostels:
+    get:
+      operationId: listHostels
+      tags: [administration]
+      summary: List hostel occupancy
+      responses:
+        "200":
+          description: Hostel occupancy
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Hostel"
+  /gates:
+    get:
+      operationId: listGates
+      tags: [gates]
+      summary: List gate status
+      responses:
+        "200":
+          description: Gate status records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Gate"
+  /gates/{id}:
+    patch:
+      operationId: updateGate
+      tags: [administration]
+      summary: Update simulated gate status
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GateUpdate"
+      responses:
+        "200":
+          description: Updated gate
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Gate"
+  /devices:
+    get:
+      operationId: listDevices
+      tags: [gates]
+      summary: List simulated verification devices
+      responses:
+        "200":
+          description: Device status records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Device"
+  /devices/{id}:
+    patch:
+      operationId: updateDevice
+      tags: [administration]
+      summary: Update simulated device status
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeviceUpdate"
+      responses:
+        "200":
+          description: Updated device
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Device"
+  /policies:
+    get:
+      operationId: listPolicies
+      tags: [administration]
+      summary: List approval policies
+      responses:
+        "200":
+          description: Movement approval policies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MovementPolicy"
+  /policies/{type}:
+    patch:
+      operationId: updatePolicy
+      tags: [administration]
+      summary: Update a movement approval policy
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/MovementType"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PolicyUpdate"
+      responses:
+        "200":
+          description: Updated policy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MovementPolicy"
+  /audit-logs:
+    get:
+      operationId: listAuditLogs
+      tags: [administration]
+      summary: List security and administrative audit events
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 100
+      responses:
+        "200":
+          description: Audit events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AuditEvent"
+  /reports:
+    get:
+      operationId: getReports
+      tags: [operations]
+      summary: Get role-scoped movement trends
+      responses:
+        "200":
+          description: Movement report data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportData"
 components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
   schemas:
     HealthStatus:
       type: object
       properties:
         status:
           type: string
+      required: [status]
+    Role:
+      type: string
+      enum: [Student, Parent, Security, Mentor, HOD, Warden, Admin]
+    AccountStatus:
+      type: string
+      enum: [active, pending, suspended]
+    MovementType:
+      type: string
+      enum: ["Short Outing", "Local Leave", Outstation, Emergency]
+    MovementStatus:
+      type: string
+      enum: [Pending, Approved, Rejected, Outside, Completed, Overdue]
+    ApprovalStatus:
+      type: string
+      enum: [Waiting, Approved, Rejected, "Not Required"]
+    UserProfile:
+      type: object
+      required: [id, email, displayName, role, accountStatus, institutionName, createdAt]
+      properties:
+        id: { type: integer }
+        email: { type: string, format: email }
+        displayName: { type: string }
+        role: { $ref: "#/components/schemas/Role" }
+        accountStatus: { $ref: "#/components/schemas/AccountStatus" }
+        institutionName: { type: string }
+        department: { type: ["string", "null"] }
+        year: { type: ["integer", "null"] }
+        hostel: { type: ["string", "null"] }
+        room: { type: ["string", "null"] }
+        phone: { type: ["string", "null"] }
+        createdAt: { type: string, format: date-time }
+    MeUpdate:
+      type: object
+      properties:
+        displayName: { type: string, minLength: 1, maxLength: 120 }
+        department: { type: ["string", "null"] }
+        year: { type: ["integer", "null"], minimum: 1, maximum: 8 }
+        hostel: { type: ["string", "null"] }
+        room: { type: ["string", "null"] }
+        phone: { type: ["string", "null"] }
+    UserUpdate:
+      type: object
+      properties:
+        role: { $ref: "#/components/schemas/Role" }
+        accountStatus: { $ref: "#/components/schemas/AccountStatus" }
+        department: { type: ["string", "null"] }
+        year: { type: ["integer", "null"], minimum: 1, maximum: 8 }
+        hostel: { type: ["string", "null"] }
+        room: { type: ["string", "null"] }
+    UserLinkInput:
+      type: object
+      required: [studentId, relationship]
+      properties:
+        studentId: { type: integer, minimum: 1 }
+        relationship:
+          type: string
+          enum: [parent_of, mentor_for]
+    UserLink:
+      type: object
+      required: [id, userId, studentId, relationship, createdAt]
+      properties:
+        id: { type: integer }
+        userId: { type: integer }
+        studentId: { type: integer }
+        relationship: { type: string, enum: [parent_of, mentor_for] }
+        createdAt: { type: string, format: date-time }
+    Approval:
+      type: object
+      required: [id, role, status, reviewerName, comment, actedAt]
+      properties:
+        id: { type: integer }
+        role: { $ref: "#/components/schemas/Role" }
+        status: { $ref: "#/components/schemas/ApprovalStatus" }
+        reviewerName: { type: ["string", "null"] }
+        comment: { type: ["string", "null"] }
+        actedAt: { type: ["string", "null"], format: date-time }
+    Movement:
+      type: object
       required:
-        - status
+        [id, requestCode, studentId, studentName, studentEmail, department, year, hostel, room, type, purpose, destination, reason, exitAt, expectedReturnAt, travelDetails, status, createdAt, updatedAt, approvals]
+      properties:
+        id: { type: integer }
+        requestCode: { type: string }
+        studentId: { type: integer }
+        studentName: { type: string }
+        studentEmail: { type: string, format: email }
+        department: { type: ["string", "null"] }
+        year: { type: ["integer", "null"] }
+        hostel: { type: ["string", "null"] }
+        room: { type: ["string", "null"] }
+        type: { $ref: "#/components/schemas/MovementType" }
+        purpose: { type: string }
+        destination: { type: string }
+        reason: { type: string }
+        exitAt: { type: string, format: date-time }
+        expectedReturnAt: { type: string, format: date-time }
+        travelDetails: { type: ["string", "null"] }
+        status: { $ref: "#/components/schemas/MovementStatus" }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        approvals:
+          type: array
+          items: { $ref: "#/components/schemas/Approval" }
+    MovementInput:
+      type: object
+      required: [type, purpose, destination, reason, exitAt, expectedReturnAt]
+      properties:
+        type: { $ref: "#/components/schemas/MovementType" }
+        purpose: { type: string, minLength: 2, maxLength: 240 }
+        destination: { type: string, minLength: 2, maxLength: 240 }
+        reason: { type: string, minLength: 2, maxLength: 1000 }
+        exitAt: { type: string, format: date-time }
+        expectedReturnAt: { type: string, format: date-time }
+        travelDetails: { type: ["string", "null"], maxLength: 1000 }
+    DecisionInput:
+      type: object
+      required: [decision]
+      properties:
+        decision: { type: string, enum: [approve, reject] }
+        comment: { type: ["string", "null"], maxLength: 1000 }
+    QrToken:
+      type: object
+      required: [movementId, token, purpose, expiresAt, simulated]
+      properties:
+        movementId: { type: integer }
+        token: { type: string }
+        purpose: { type: string, enum: [EXIT, RETURN] }
+        expiresAt: { type: string, format: date-time }
+        simulated: { type: boolean, enum: [true] }
+    GateVerificationInput:
+      type: object
+      required: [token, action, gateId, simulatedBiometricMatch, confirmGateAction]
+      properties:
+        token: { type: string, minLength: 16, maxLength: 256 }
+        action: { type: string, enum: [EXIT, RETURN] }
+        gateId: { type: integer, minimum: 1 }
+        simulatedBiometricMatch: { type: boolean }
+        confirmGateAction: { type: boolean }
+    GateVerificationResult:
+      type: object
+      required: [result, reason, movement, simulated]
+      properties:
+        result: { type: string, enum: [Allowed, Denied] }
+        reason: { type: string }
+        movement: { $ref: "#/components/schemas/Movement" }
+        simulated: { type: boolean, enum: [true] }
+    Notification:
+      type: object
+      required: [id, title, body, category, read, movementId, createdAt]
+      properties:
+        id: { type: integer }
+        title: { type: string }
+        body: { type: string }
+        category: { type: string }
+        read: { type: boolean }
+        movementId: { type: ["integer", "null"] }
+        createdAt: { type: string, format: date-time }
+    Activity:
+      type: object
+      required: [id, action, message, actorName, actorRole, outcome, movementId, createdAt]
+      properties:
+        id: { type: integer }
+        action: { type: string }
+        message: { type: string }
+        actorName: { type: string }
+        actorRole: { $ref: "#/components/schemas/Role" }
+        outcome: { type: string }
+        movementId: { type: ["integer", "null"] }
+        createdAt: { type: string, format: date-time }
+    DashboardSummary:
+      type: object
+      required: [user, pendingApprovals, pendingRequests, studentsOutside, overdue, todayMovements, unreadNotifications, recentActivity]
+      properties:
+        user: { $ref: "#/components/schemas/UserProfile" }
+        pendingApprovals: { type: integer }
+        pendingRequests: { type: integer }
+        studentsOutside: { type: integer }
+        overdue: { type: integer }
+        todayMovements: { type: integer }
+        unreadNotifications: { type: integer }
+        recentActivity:
+          type: array
+          items: { $ref: "#/components/schemas/Activity" }
+    Hostel:
+      type: object
+      required: [id, name, wardenName, residentCount, presentCount]
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        wardenName: { type: ["string", "null"] }
+        residentCount: { type: integer }
+        presentCount: { type: integer }
+    Gate:
+      type: object
+      required: [id, name, location, status]
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        location: { type: string }
+        status: { type: string, enum: [online, offline, maintenance] }
+    GateUpdate:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string, enum: [online, offline, maintenance] }
+    Device:
+      type: object
+      required: [id, name, type, status, simulated, lastSeenAt]
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        type: { type: string, enum: ["QR Scanner", "Biometric Reader", "Gate Controller"] }
+        status: { type: string, enum: [online, offline, maintenance] }
+        simulated: { type: boolean, enum: [true] }
+        lastSeenAt: { type: string, format: date-time }
+    DeviceUpdate:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string, enum: [online, offline, maintenance] }
+    MovementPolicy:
+      type: object
+      required: [type, autoApprove, requiresMentor, requiresHod, requiresWarden, durationLimitHours, updatedAt]
+      properties:
+        type: { $ref: "#/components/schemas/MovementType" }
+        autoApprove: { type: boolean }
+        requiresMentor: { type: boolean }
+        requiresHod: { type: boolean }
+        requiresWarden: { type: boolean }
+        durationLimitHours: { type: integer, minimum: 1 }
+        updatedAt: { type: string, format: date-time }
+    PolicyUpdate:
+      type: object
+      required: [autoApprove, requiresMentor, requiresHod, requiresWarden, durationLimitHours]
+      properties:
+        autoApprove: { type: boolean }
+        requiresMentor: { type: boolean }
+        requiresHod: { type: boolean }
+        requiresWarden: { type: boolean }
+        durationLimitHours: { type: integer, minimum: 1, maximum: 720 }
+    AuditEvent:
+      type: object
+      required: [id, action, actorName, actorRole, result, details, createdAt]
+      properties:
+        id: { type: integer }
+        action: { type: string }
+        actorName: { type: string }
+        actorRole: { $ref: "#/components/schemas/Role" }
+        result: { type: string }
+        details: { type: string }
+        movementId: { type: ["integer", "null"] }
+        createdAt: { type: string, format: date-time }
+    DailyReport:
+      type: object
+      required: [date, label, exits, returns]
+      properties:
+        date: { type: string, format: date }
+        label: { type: string }
+        exits: { type: integer }
+        returns: { type: integer }
+    TypeReport:
+      type: object
+      required: [type, count]
+      properties:
+        type: { $ref: "#/components/schemas/MovementType" }
+        count: { type: integer }
+    ReportData:
+      type: object
+      required: [daily, byType]
+      properties:
+        daily:
+          type: array
+          items: { $ref: "#/components/schemas/DailyReport" }
+        byType:
+          type: array
+          items: { $ref: "#/components/schemas/TypeReport" }
 
