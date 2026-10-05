@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "HostelFlow"
+description = "A secure, mobile-first college hostel movement platform for student leave requests, role-based approvals, gate verification, parent notifications, and live hostel operations."
+version = "1.0.0"
+id = "artifacts/hostelflow"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23144
+
+[services.development]
+run = "pnpm --filter @workspace/hostelflow run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/hostelflow", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/hostelflow/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23144"
+BASE_PATH = "/"
